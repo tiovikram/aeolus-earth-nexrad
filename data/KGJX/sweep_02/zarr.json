@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "sweep_name": "radar_calibration",
+    "sweep_number": 2,
+    "elevation_angle": 0.0
+  },
+  "zarr_format": 3,
+  "consolidated_metadata": {
+    "kind": "inline",
+    "must_understand": false,
+    "metadata": {}
+  },
+  "node_type": "group"
+}

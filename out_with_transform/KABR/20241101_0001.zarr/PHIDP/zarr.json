@@ -1,0 +1,52 @@
+{
+  "shape": [
+    100,
+    100
+  ],
+  "data_type": "float64",
+  "chunk_grid": {
+    "name": "regular",
+    "configuration": {
+      "chunk_shape": [
+        100,
+        100
+      ]
+    }
+  },
+  "chunk_key_encoding": {
+    "name": "default",
+    "configuration": {
+      "separator": "/"
+    }
+  },
+  "fill_value": "NaN",
+  "codecs": [
+    {
+      "name": "bytes",
+      "configuration": {
+        "endian": "little"
+      }
+    },
+    {
+      "name": "zstd",
+      "configuration": {
+        "level": 0,
+        "checksum": false
+      }
+    }
+  ],
+  "attributes": {
+    "standard_name": "radar_differential_phase_hv",
+    "long_name": "Differential phase HV",
+    "units": "degrees",
+    "coordinates": "latitude longitude",
+    "_FillValue": "AAAAAAAA+H8="
+  },
+  "dimension_names": [
+    "y",
+    "x"
+  ],
+  "zarr_format": 3,
+  "node_type": "array",
+  "storage_transformers": []
+}

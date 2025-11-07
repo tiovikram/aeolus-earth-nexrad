@@ -1,0 +1,52 @@
+{
+  "shape": [
+    872
+  ],
+  "data_type": "float32",
+  "chunk_grid": {
+    "name": "regular",
+    "configuration": {
+      "chunk_shape": [
+        872
+      ]
+    }
+  },
+  "chunk_key_encoding": {
+    "name": "default",
+    "configuration": {
+      "separator": "/"
+    }
+  },
+  "fill_value": "NaN",
+  "codecs": [
+    {
+      "name": "bytes",
+      "configuration": {
+        "endian": "little"
+      }
+    },
+    {
+      "name": "zstd",
+      "configuration": {
+        "level": 0,
+        "checksum": false
+      }
+    }
+  ],
+  "attributes": {
+    "units": "meters",
+    "standard_name": "projection_range_coordinate",
+    "long_name": "range_to_measurement_volume",
+    "axis": "radial_range_coordinate",
+    "meters_between_gates": 250.0,
+    "spacing_is_constant": "true",
+    "meters_to_center_of_first_gate": 2125.0,
+    "_FillValue": "AAAAAAAA+H8="
+  },
+  "dimension_names": [
+    "range"
+  ],
+  "zarr_format": 3,
+  "node_type": "array",
+  "storage_transformers": []
+}

@@ -1,0 +1,50 @@
+{
+  "shape": [
+    360,
+    688
+  ],
+  "data_type": "uint8",
+  "chunk_grid": {
+    "name": "regular",
+    "configuration": {
+      "chunk_shape": [
+        360,
+        688
+      ]
+    }
+  },
+  "chunk_key_encoding": {
+    "name": "default",
+    "configuration": {
+      "separator": "/"
+    }
+  },
+  "fill_value": 0,
+  "codecs": [
+    {
+      "name": "bytes"
+    },
+    {
+      "name": "zstd",
+      "configuration": {
+        "level": 0,
+        "checksum": false
+      }
+    }
+  ],
+  "attributes": {
+    "units": "meters per seconds",
+    "long_name": "Radial velocity of scatterers away from instrument H",
+    "standard_name": "radial_velocity_of_scatterers_away_from_instrument_h",
+    "coordinates": "elevation azimuth range latitude longitude altitude time",
+    "add_offset": -64.5,
+    "scale_factor": 0.5
+  },
+  "dimension_names": [
+    "azimuth",
+    "range"
+  ],
+  "zarr_format": 3,
+  "node_type": "array",
+  "storage_transformers": []
+}

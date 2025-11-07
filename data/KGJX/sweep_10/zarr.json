@@ -1,0 +1,692 @@
+{
+  "attributes": {
+    "sweep_name": "sweep_7",
+    "sweep_number": 10,
+    "elevation_angle": 0.0
+  },
+  "zarr_format": 3,
+  "consolidated_metadata": {
+    "kind": "inline",
+    "must_understand": false,
+    "metadata": {
+      "altitude": {
+        "shape": [],
+        "data_type": "int64",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": []
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": 0,
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "long_name": "altitude",
+          "units": "meters",
+          "standard_name": "altitude"
+        },
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "azimuth": {
+        "shape": [
+          720
+        ],
+        "data_type": "float64",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": [
+              720
+            ]
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": "NaN",
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "standard_name": "ray_azimuth_angle",
+          "long_name": "azimuth_angle_from_true_north",
+          "units": "degrees",
+          "axis": "radial_azimuth_coordinate",
+          "_FillValue": "AAAAAAAA+H8="
+        },
+        "dimension_names": [
+          "azimuth"
+        ],
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "DBZH": {
+        "shape": [
+          720,
+          1192
+        ],
+        "data_type": "uint8",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": [
+              360,
+              596
+            ]
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": 0,
+        "codecs": [
+          {
+            "name": "bytes"
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "units": "dBZ",
+          "long_name": "Equivalent reflectivity factor H",
+          "standard_name": "radar_equivalent_reflectivity_factor_h",
+          "coordinates": "elevation azimuth range latitude longitude altitude time",
+          "add_offset": -33.0,
+          "scale_factor": 0.5
+        },
+        "dimension_names": [
+          "azimuth",
+          "range"
+        ],
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "elevation": {
+        "shape": [
+          720
+        ],
+        "data_type": "float64",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": [
+              720
+            ]
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": "NaN",
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "standard_name": "ray_elevation_angle",
+          "long_name": "elevation_angle_from_horizontal_plane",
+          "units": "degrees",
+          "axis": "radial_elevation_coordinate",
+          "_FillValue": "AAAAAAAA+H8="
+        },
+        "dimension_names": [
+          "azimuth"
+        ],
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "follow_mode": {
+        "shape": [],
+        "data_type": {
+          "name": "fixed_length_utf32",
+          "configuration": {
+            "length_bytes": 28
+          }
+        },
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": []
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": "",
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "coordinates": "altitude latitude longitude"
+        },
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "latitude": {
+        "shape": [],
+        "data_type": "float64",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": []
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": "NaN",
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "long_name": "latitude",
+          "units": "degrees_north",
+          "positive": "up",
+          "standard_name": "latitude",
+          "_FillValue": "AAAAAAAA+H8="
+        },
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "longitude": {
+        "shape": [],
+        "data_type": "float64",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": []
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": "NaN",
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "long_name": "longitude",
+          "units": "degrees_east",
+          "standard_name": "longitude",
+          "_FillValue": "AAAAAAAA+H8="
+        },
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "prt_mode": {
+        "shape": [],
+        "data_type": {
+          "name": "fixed_length_utf32",
+          "configuration": {
+            "length_bytes": 28
+          }
+        },
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": []
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": "",
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "coordinates": "altitude latitude longitude"
+        },
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "range": {
+        "shape": [
+          1192
+        ],
+        "data_type": "float32",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": [
+              1192
+            ]
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": "NaN",
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "units": "meters",
+          "standard_name": "projection_range_coordinate",
+          "long_name": "range_to_measurement_volume",
+          "axis": "radial_range_coordinate",
+          "meters_between_gates": 250.0,
+          "spacing_is_constant": "true",
+          "meters_to_center_of_first_gate": 2125.0,
+          "_FillValue": "AAAAAAAA+H8="
+        },
+        "dimension_names": [
+          "range"
+        ],
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "sweep_fixed_angle": {
+        "shape": [],
+        "data_type": "float64",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": []
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": "NaN",
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "coordinates": "altitude latitude longitude",
+          "_FillValue": "AAAAAAAA+H8="
+        },
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "sweep_mode": {
+        "shape": [],
+        "data_type": {
+          "name": "fixed_length_utf32",
+          "configuration": {
+            "length_bytes": 80
+          }
+        },
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": []
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": "",
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "coordinates": "altitude latitude longitude"
+        },
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "sweep_number": {
+        "shape": [],
+        "data_type": "int64",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": []
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": 0,
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "coordinates": "altitude latitude longitude"
+        },
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "time": {
+        "shape": [
+          720
+        ],
+        "data_type": "float64",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": [
+              720
+            ]
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": "NaN",
+        "codecs": [
+          {
+            "name": "bytes",
+            "configuration": {
+              "endian": "little"
+            }
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "standard_name": "time",
+          "units": "milliseconds since 1970-01-01T00:00:00+00:00",
+          "calendar": "proleptic_gregorian",
+          "_FillValue": "AAAAAAAA+H8="
+        },
+        "dimension_names": [
+          "azimuth"
+        ],
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "VRADH": {
+        "shape": [
+          720,
+          1192
+        ],
+        "data_type": "uint8",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": [
+              360,
+              596
+            ]
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": 0,
+        "codecs": [
+          {
+            "name": "bytes"
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "units": "meters per seconds",
+          "long_name": "Radial velocity of scatterers away from instrument H",
+          "standard_name": "radial_velocity_of_scatterers_away_from_instrument_h",
+          "coordinates": "elevation azimuth range latitude longitude altitude time",
+          "add_offset": -64.5,
+          "scale_factor": 0.5
+        },
+        "dimension_names": [
+          "azimuth",
+          "range"
+        ],
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      },
+      "WRADH": {
+        "shape": [
+          720,
+          1192
+        ],
+        "data_type": "uint8",
+        "chunk_grid": {
+          "name": "regular",
+          "configuration": {
+            "chunk_shape": [
+              360,
+              596
+            ]
+          }
+        },
+        "chunk_key_encoding": {
+          "name": "default",
+          "configuration": {
+            "separator": "/"
+          }
+        },
+        "fill_value": 0,
+        "codecs": [
+          {
+            "name": "bytes"
+          },
+          {
+            "name": "zstd",
+            "configuration": {
+              "level": 0,
+              "checksum": false
+            }
+          }
+        ],
+        "attributes": {
+          "units": "meters per seconds",
+          "long_name": "Doppler spectrum width H",
+          "standard_name": "radar_doppler_spectrum_width_h",
+          "coordinates": "elevation azimuth range latitude longitude altitude time",
+          "add_offset": -64.5,
+          "scale_factor": 0.5
+        },
+        "dimension_names": [
+          "azimuth",
+          "range"
+        ],
+        "zarr_format": 3,
+        "node_type": "array",
+        "storage_transformers": []
+      }
+    }
+  },
+  "node_type": "group"
+}
