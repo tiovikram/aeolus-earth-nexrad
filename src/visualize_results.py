@@ -86,46 +86,51 @@ def create_comparison_plots(data_path: str, output_path: str, save_path: str = '
             station = transformed_stations[0]
             ds = processed_data[station]
             
-            # Plot 1: Polar representation (reconstruct from cartesian if needed)
+            # Plot 1: Polar representation - show cartesian data in polar view
             ax1 = plt.subplot(2, 4, 1, projection='polar')
             
             # Use actual DBZH data to show in polar coordinates
             if 'DBZH' in ds.data_vars:
                 dbzh = ds.DBZH.values
                 
-                # Create polar coordinate representation from cartesian data
-                # Convert cartesian back to polar for visualization
-                x = ds.x.values
-                y = ds.y.values
-                xx, yy = np.meshgrid(x, y)
+                # Get coordinate ranges (in degrees lat/lon)
+                x = ds.x.values  # longitude
+                y = ds.y.values  # latitude
                 
-                # Convert to polar
-                rr = np.sqrt(xx**2 + yy**2)
-                theta_data = np.arctan2(yy, xx)
+                # Get radar center location
+                radar_lon = float(ds.attrs.get('longitude', x.mean()))
+                radar_lat = float(ds.attrs.get('latitude', y.mean()))
                 
-                # Create polar grid for display
-                theta = np.linspace(0, 2*np.pi, 360)
-                r = np.linspace(0, np.max(rr), 100)
+                # Create polar grid for visualization
+                theta = np.linspace(0, 2*np.pi, 180)  # Azimuth angles
+                # Maximum range in degrees (approximately 2 degrees covers ~220km)
+                max_range_deg = 2.0
+                r = np.linspace(0, max_range_deg, 100)  # Range in degrees
+                
+                # Create meshgrid for polar display
                 theta_grid, r_grid = np.meshgrid(theta, r)
                 
-                # Interpolate cartesian data to polar grid
-                from scipy.interpolate import griddata
-                points = np.column_stack((rr.ravel(), theta_data.ravel()))
-                values = dbzh.ravel()
+                # Convert polar grid to lat/lon coordinates
+                # r is distance in degrees, theta is azimuth from north
+                lat_polar = radar_lat + r_grid * np.cos(theta_grid)
+                lon_polar = radar_lon + r_grid * np.sin(theta_grid)
                 
-                # Remove NaN values for interpolation
-                mask = ~np.isnan(values)
-                if np.any(mask):
-                    points = points[mask]
-                    values = values[mask]
-                    
-                    polar_points = np.column_stack((r_grid.ravel(), theta_grid.ravel()))
-                    polar_data = griddata(points, values, polar_points, method='nearest')
-                    polar_data = polar_data.reshape(r_grid.shape)
-                else:
-                    # If no valid data, create a sample pattern
-                    polar_data = np.random.randn(100, 360) * 10 + 20
-                    polar_data[polar_data < 0] = np.nan
+                # Interpolate cartesian data to polar grid points
+                from scipy.interpolate import RegularGridInterpolator
+                
+                # Create interpolator for the cartesian data
+                # Note: RegularGridInterpolator expects (y, x) order for 2D data
+                interpolator = RegularGridInterpolator(
+                    (y, x), 
+                    dbzh,
+                    method='linear',
+                    bounds_error=False,
+                    fill_value=np.nan
+                )
+                
+                # Sample at polar grid points (lat, lon order)
+                points = np.column_stack([lat_polar.ravel(), lon_polar.ravel()])
+                polar_data = interpolator(points).reshape(r_grid.shape)
                 
                 # Use a radar-like colormap
                 try:
@@ -139,10 +144,24 @@ def create_comparison_plots(data_path: str, output_path: str, save_path: str = '
                     n_bins = 100
                     cmap = matplotlib.colors.LinearSegmentedColormap.from_list('radar', colors_list, N=n_bins)
                 
-                c = ax1.pcolormesh(theta_grid, r_grid, polar_data, cmap=cmap, vmin=-10, vmax=60, shading='auto')
-                ax1.set_title(f'Polar Representation\n{station}', fontsize=12, fontweight='bold', pad=20)
+                # Mask invalid data
+                polar_data_masked = np.ma.masked_invalid(polar_data)
+                
+                c = ax1.pcolormesh(theta_grid, r_grid, polar_data_masked, 
+                                  cmap=cmap, vmin=-35, vmax=60, shading='auto')
+                ax1.set_title(f'Polar View (from Cartesian)\n{station}', fontsize=12, fontweight='bold', pad=20)
                 ax1.set_theta_zero_location('N')
                 ax1.set_theta_direction(-1)
+                ax1.set_ylim(0, r.max())
+                
+                # Add range rings
+                for ring_r in np.linspace(0, r.max(), 5)[1:]:
+                    ax1.plot(theta, [ring_r]*len(theta), 'k-', alpha=0.2, linewidth=0.5)
+                
+                # Add azimuth lines
+                for angle in np.arange(0, 360, 30):
+                    ax1.plot([np.radians(angle), np.radians(angle)], [0, r.max()], 'k-', alpha=0.2, linewidth=0.5)
+                
                 plt.colorbar(c, ax=ax1, label='dBZ', fraction=0.046, pad=0.04)
             else:
                 ax1.text(0.5, 0.5, 'No DBZH data', ha='center', va='center', transform=ax1.transAxes)
@@ -181,8 +200,8 @@ def create_comparison_plots(data_path: str, output_path: str, save_path: str = '
                     ax2.axhline(y[i], color='black', alpha=0.2, linewidth=0.5)
                 
                 ax2.set_title(f'Cartesian Grid\n{station}', fontsize=12, fontweight='bold')
-                ax2.set_xlabel('X (km)')
-                ax2.set_ylabel('Y (km)')
+                ax2.set_xlabel('Longitude (°)')
+                ax2.set_ylabel('Latitude (°)')
                 ax2.set_xlim(x.min(), x.max())
                 ax2.set_ylim(y.min(), y.max())
                 
@@ -212,8 +231,8 @@ def create_comparison_plots(data_path: str, output_path: str, save_path: str = '
                                           ds.y.min().item(), ds.y.max().item()],
                                    origin='lower', vmin=-10, vmax=60)
                     ax3.set_title(f'Cartesian DBZH\n{station}', fontsize=12, fontweight='bold')
-                    ax3.set_xlabel('X (km)')
-                    ax3.set_ylabel('Y (km)')
+                    ax3.set_xlabel('Longitude (°)')
+                    ax3.set_ylabel('Latitude (°)')
                     plt.colorbar(im, ax=ax3, label='dBZ')
                     
                     # Add radar location
